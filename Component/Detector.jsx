@@ -91,15 +91,16 @@ export default function SimpleObjectDetector() {
 
     return (
 
-        <div className=' grid lg: grid-cols-3 gap-6'>
+        <div className="min-h-screen bg-gray-100 p-2 sm:p-4 lg:p-6">
+            <div className=' grid grid-cols-1 xl:grid-col-3 gap-4 sm:gap-6 p-2 sm:p-4'>
             
-            <div className='lg:col-span-2'>
-                <div className="bg-white rounded-2xl shadow-lg p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <h2 className="text-xl font-semibold text-gray-800">Live Video Feed</h2>
+            <div className='xl:col-span-2'>
+                <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-6">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2 sm:gap-0">                               
+                                <h2 className="text-lg sm:text-xl font-semibold text-gray-800">Live Video Feed</h2>
                                 <div className="flex items-center gap-2">
                                     <div className={`w-3 h-3 rounded-full ${model ? 'bg-green-500' : 'bg-yellow-500'} animate-pulse`}></div>
-                                    <span className="text-sm text-gray-600">
+                                    <span className=" text-xs sm:text-sm text-gray-600">
                                         {model ? 'Model Ready' : 'Loading Model...'}
                                     </span>
                                 </div>
@@ -113,20 +114,21 @@ export default function SimpleObjectDetector() {
 
                 <div className='relative bg-gray-500 rounded-lg overflow-hidden mb-4'>
                     <canvas ref={canvasRef} width="640" height="480"
-                    className='w-full h-auto border-2 border-gray-200 rounded-lg shadow-inner'
+                    className='w-full h-auto max-w-full border-2 border-gray-200 rounded-lg shadow-inner'
+                    style={{aspectRatio: '4/3'}}
                     />    
 
                     {detected && (
-                                    <div className="absolute top-4 left-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg animate-pulse">
-                                        <div className="flex items-center gap-2">
-                                            <AlertTriangle className="w-5 h-5" />
-                                            <span className="font-semibold">🚨 Harassment Detected!</span>
+                                    <div className="absolute top-4 sm:top-4 left-4 bg-red-500 text-white px-2 sm:px-4 py-1 sm:py-2  rounded-lg shadow-lg animate-pulse">
+                                        <div className="flex items-center gap-2 sm:gap-2">
+                                            <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5" />
+                                            <span className="font-semibold text-xs sm:text-base">🚨 Harassment Detected!</span>
                                         </div>
                                     </div>
                                 )}
-                                <div className="absolute top-4 right-4 bg-black bg-opacity-75 text-white px-3 py-1 rounded-full text-sm">
+                                <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-black bg-opacity-75 text-white px-2 sm:px-3  py-1 rounded-full text-sm">
                                     {isDetecting ? (
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-1 sm:gap-2">
                                             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
                                             <span>DETECTING</span>
                                         </div>
@@ -142,72 +144,74 @@ export default function SimpleObjectDetector() {
 
                 <div className='flex items-center justify-center gap-4'>
                 <button
-                className={` flex items-center gap-3 border bg-green-400 border-green-500 px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg${
+                className={`flex items-center gap-2 sm:gap-3 border bg-green-400 border-green-500 px-4 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-sm sm:text-lg transition-all transform hover:scale-105 shadow-lg${
                     isDetecting ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'
                 } text-white font-bold py-2 px-4 rounded shadow mt-4`}
                 onClick={handleToggle}
                 >
-                {isDetecting ? <Square className=' w-6 h-6' />  :<Play className="w-6 h-6" />}
+                {isDetecting ? <Square className=' w-5 h-5 sm:w-6 sm:h-6' />  :<Play className="w-6 h-6" />}
                 {isDetecting ? 'Stop Detection' : 'Start Detection'}
                 </button>
                 </div>
                 </div>
             </div>
 
-            <div className='space-y-6'>
-                <div className='bg-white rounded-2xl shadow-lg p-6'>
-                    <h3 className='text-lg font-semibold text-gray-800 mb-3 flex items-center gap-3'>
-                        <Eye className='w-8 h-9'/>
+            <div className='space-y-3 sm:space-y-6'>
+                <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6'>
+                    <h3 className='text-base sm:text-lg font-semibold text-gray-800 mb-3 flex items-center gap-3'>
+                        <Eye className='w-8 h-9 sm:w-8 sm:h-9'/>
                         System Status
                     </h3>
-                    <div className='space-y-6'>
-                        <div className=' flex items-center justify-between p-3 bg-gray-50 rounded-lg'>
-                            <span className='text-gray-600 font-medium'>
+                    <div className='space-y-3 sm:space-y-6'>
+                        <div className=' flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg'>
+                            <span className='text-gray-600 font-medium text-sm sm:text-base'>
                                 AI Model
                             </span>
                             <div className='flex items-center gap-2'>
-                                <div className={`w-5 h-5 rounded-full ${model ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
-                                <span className="text-sm font-semibold">{model ? 'Loaded' : 'Loading...'}</span>
+                                <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${model ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                                <span className="text-xs sm:text-sm font-semibold">{model ? 'Loaded' : 'Loading...'}</span>
 
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                    <span className="text-gray-600 font-medium">Detection</span>
+                        <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                                    <span className="text-gray-600 font-medium text-sm sm:text-base">Detection</span>
                                     <div className="flex items-center gap-2">
-                                        <div className={`w-5 h-5 rounded-full ${isDetecting ? 'bg-blue-500 animate-pulse' : 'bg-gray-400'}`}></div>
-                                        <span className="text-sm font-semibold">{isDetecting ? 'Active' : 'Inactive'}</span>
+                                        <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${isDetecting ? 'bg-blue-500 animate-pulse' : 'bg-gray-400'}`}></div>
+                                        <span className="text-xs sm:text-sm font-semibold">{isDetecting ? 'Active' : 'Inactive'}</span>
                                     </div>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                    <span className="text-gray-600 font-medium">Alerts</span>
+                        <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                                    <span className="text-gray-600 font-medium text-sm sm:text-base">Alerts</span>
                                     <div className="flex items-center gap-2">
-                                        <div className={`w-5 h-5 rounded-full ${detected ? 'bg-red-500 animate-pulse' : 'bg-gray-400'}`}></div>
-                                        <span className="text-sm font-semibold">{detected ? 'ALERT!' : 'Clear'}</span>
+                                        <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${detected ? 'bg-red-500 animate-pulse' : 'bg-gray-400'}`}></div>
+                                        <span className="text-xs sm:text-sm font-semibold">{detected ? 'ALERT!' : 'Clear'}</span>
                                     </div>
                         </div>
 
                     </div>
                 </div>
-                <div className='bg-white rounded-2xl shadow-lg p-6'>
-                    <div className='flex items-center justify-between'>
-                        <h3 className='flex gap-2 text-lg font-semibold text-gray-800 items-center'>
-                            <AlertTriangle className='w-8 h-8 bold' />
+                <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6'>
+                    <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2 sm:gap-0'>
+                        <h3 className='flex gap-2 text-base sm:text-lg font-semibold text-gray-800 items-center'>
+                            <AlertTriangle className='w-6 sm:w-8 h-6 sm:h-8 bold' />
                             Detection Logs
                         </h3>
                         <span className='text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full font-medium'>
                             {logs.length} events
                         </span>
                     </div>
-                    <div>
+                    <div className='max-h-48 sm:max-h-64 overflow-y-auto'>
                         {logs.length > 0 ?(
-                            logs.map((log,index) => (
-                        <li key = {index}>{log}</li>
-                    ))
+                            <ul className='space-y-1 sm:space-y-2'>
+                                {logs.map((log,index) => (
+                                    <li key={index} className='text-xs sm:text-sm p-2 bg-red-50 rounded border-l-4 border-red-400'>{log}</li>
+                                ))}
+                            </ul>
                         ):(
-                            <div className="text-center py-8 text-gray-500">
-                                        <EyeOff className="w-12 h-12 mx-auto mb-3 opacity-80" />
-                                        <p className="font-medium">No detections yet</p>
+                            <div className="text-center py-6 sm:py-8 text-gray-500">
+                                        <EyeOff className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-80" />
+                                        <p className="font-medium text-sm sm:text-base">No detections yet</p>
                             </div>
                         )
                     }
@@ -216,14 +220,17 @@ export default function SimpleObjectDetector() {
             </div>
             
             {detected && (
-                    <div className="fixed bottom-6 left-6 right-6 bg-red-500 text-white p-4 rounded-lg shadow-2xl animate-pulse z-50">
-                        <div className="flex items-center justify-center gap-3 font-bold text-lg">
-                            <AlertTriangle className="w-6 h-6" />
+                    <div className="fixed bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 bg-red-500 text-white p-3 s:p-4 rounded-lg shadow-2xl animate-pulse z-50">
+                        <div className="flex items-center justify-center gap-2 sm:gap-3 font-bold text-sm sm:text-lg">
+                            <AlertTriangle className=" w-5 h-5 sm:w-6 sm:h-6" />
                             🚨 HARASSMENT DETECTED! 🚨
                         </div>
                     </div>
                 )}
 
         </div>
+        </div>
+
+
     );
 }
